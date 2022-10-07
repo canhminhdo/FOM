@@ -2,7 +2,7 @@ mod BOOLEAN-LATTICE is
     sort Lattice .
     sort IBool .
 
-    ops true false : -> IBool [ctor] .
+    op true : -> IBool [ctor] .
 
     ops bot top : -> Lattice [ctor] .
     op not_ : Lattice -> Lattice [prec 31] .
@@ -48,7 +48,7 @@ mod BOOLEAN-LATTICE is
 
     --- Checking equivalence of two lattices
     op _=?=_ : Lattice Lattice -> IBool .
-    rl [equivalent] : P =?= P => true .
+    eq P =?= P = true .
 endm
 
 mod BOOLEAN-LATTICE-TEST is
