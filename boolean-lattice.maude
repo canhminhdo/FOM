@@ -16,7 +16,7 @@ mod BOOLEAN-LATTICE is
     eq P and P = P .
     eq P or P = P .
 
-    --- Absortive laws
+    --- Absorptive laws
     eq P and (P or Q) = P .
     eq P or (P and Q) = P .
 

@@ -16,7 +16,7 @@ mod FOM is
     eq P qand P = P .
     eq P qor P = P .
 
-    --- Absortive laws
+    --- Absorptive laws
     eq P qand (P qor Q) = P .
     eq P qor (P qand Q) = P .
 
