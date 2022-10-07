@@ -1,4 +1,4 @@
-# A tool written in Maude for checking the word problem in free orthomodular lattice using model checking
+# A tool for checking the word problem in free orthomodular lattices using model checking
 
 
 ## 1. Features
@@ -6,7 +6,7 @@ The tool is written in Maude 3.1 with the following features:
 
 - formally specifying free orthomodular lattices
 - formally specifying `FH theorem` by means of rewrite rules
-- formally specifying `96 normal forms` by means of equations, which is generated automatically in our tool.
+- formally specifying `96 normal forms` by means of equations, which are generated automatically in our tool.
 
 ## 2. How to check the word problem
 
