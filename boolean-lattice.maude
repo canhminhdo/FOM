@@ -1,0 +1,64 @@
+mod BOOLEAN-LATTICE is
+    sort Lattice .
+    sort IBool .
+
+    ops true false : -> IBool [ctor] .
+
+    ops bot top : -> Lattice [ctor] .
+    op not_ : Lattice -> Lattice [prec 31] .
+    op _and_ : Lattice Lattice -> Lattice [assoc comm prec 32] .
+    op _or_ : Lattice Lattice -> Lattice [assoc comm prec 33] .
+    op _|->_ : Lattice Lattice -> Lattice [prec 34 gather (e E)] .
+
+    vars P Q R : Lattice .
+
+    --- Idempotent laws
+    eq P and P = P .
+    eq P or P = P .
+
+    --- Absortive laws
+    eq P and (P or Q) = P .
+    eq P or (P and Q) = P .
+
+    --- Distributive laws
+    eq P or (Q and R) = (P or Q) and (P or R) .
+    eq P and (Q or R) = (P and Q) or (P and R) .
+
+    --- Involution
+    eq not top = bot .
+    eq not bot = top .
+    eq not(not P) = P .
+
+    --- Complements
+    eq P and not P = bot .
+    eq P or not P = top .
+
+    --- Identities
+    eq P and top = P .
+    eq P and bot = bot .
+    eq P or bot = P .
+    eq P or top = top .
+
+    --- De Morgan's laws
+    eq not (P or Q) = not P and not Q .
+    eq not (P and Q) = not P or not Q .
+
+    --- Implication algebra
+    rl [imply] : P |-> Q => not P and Q .
+
+    --- Checking equivalence of two lattices
+    op _=?=_ : Lattice Lattice -> IBool .
+    rl [equivalent] : P =?= P => true .
+endm
+
+mod BOOLEAN-LATTICE-TEST is
+    pr BOOLEAN-LATTICE .
+    ops p q r : -> Lattice .
+endm
+
+--- Verification of I1 of implicaiton algebra
+search [1] (p |-> q) |-> p =?= p =>* true .
+--- Verification of I2 of implicaiton algebra
+search [1] p |-> (q |-> r) =?= q |-> (p |-> r) =>* true .
+--- Verification of I3 of implicaiton algebras
+search [1] (p |-> q) |-> q =?= (q |-> p) |-> p =>* true .
