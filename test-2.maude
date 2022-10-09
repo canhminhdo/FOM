@@ -1,0 +1,6 @@
+in free-orthomodular-lattice.maude
+
+--- [o] Verification of O2 of ortho-implicaiton algebra
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-NF .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FH .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FULL .

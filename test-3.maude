@@ -1,0 +1,6 @@
+in free-orthomodular-lattice.maude
+
+--- [o] Verification of O5 of orthomodular implication algebra
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-NF .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FH .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FULL .

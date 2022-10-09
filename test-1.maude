@@ -1,0 +1,6 @@
+in free-orthomodular-lattice.maude
+
+--- [o] Verification of Q2 of quasi-implicaiton algebra
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-NF .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FH .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FULL .

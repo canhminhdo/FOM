@@ -1,0 +1,6 @@
+in free-orthomodular-lattice.maude
+
+--- [o] Verification of J4 of Sasaki implication algebra
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-NF .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FH .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FULL .

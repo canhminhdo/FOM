@@ -1,0 +1,6 @@
+in free-orthomodular-lattice.maude
+
+--- [?] Verification of L6 of Relevance implicaiton algebra
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-NF .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FH .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FULL .
