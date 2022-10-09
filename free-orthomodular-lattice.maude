@@ -410,7 +410,7 @@ endm
 in full-maude .
 
 mod FOM-CONFIG is
-    protecting FOM&FH-THEOREM .
+    protecting FOM .
 
     --- Error handling
     ops error failure : -> Lattice [ctor] .
@@ -438,12 +438,16 @@ mod FOM-CHECKER is
     ) .
 
     --- Using FH theorem only
-    op FOM : -> Module .
-    eq FOM = upModule('FOM-CONFIG, false) .
+    op FOM-FH : -> Module [memo] .
+    eq FOM-FH = addImports((protecting 'FOM&FH-THEOREM .), upModule('FOM-CONFIG, false)) .
+
+    --- Using 96 normal forms only
+    op FOM-NF : -> Module [memo] .
+    eq FOM-NF = addEqs(NF-EQS, upModule('FOM-CONFIG, false)) .
 
     --- Using FH theorem & 96 normal forms
-    op FOM-FULL : -> Module .
-    eq FOM-FULL = addEqs(NF-EQS, upModule('FOM-CONFIG, false)) .
+    op FOM-FULL : -> Module [memo] .
+    eq FOM-FULL = addEqs(NF-EQS, FOM-FH) .
 
     vars L L1 L2 : Lattice .
     vars T1 T2 : Term .
@@ -475,42 +479,52 @@ endm
 
 --- set print attribute on .
 
---- [o] Verification of Q1 of quasi-implicaiton algebra
---- red (a |-> b) |-> a =?= a in FOM .
+--- [ignore] Verification of Q1 of quasi-implicaiton algebra
+--- red (a |-> b) |-> a =?= a in FOM-NF .
+--- red (a |-> b) |-> a =?= a in FOM-FH .
 --- red (a |-> b) |-> a =?= a in FOM-FULL .
 
 --- [o] Verification of Q2 of quasi-implicaiton algebra
---- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-NF .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FH .
 --- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FULL .
 
---- [o] Verification of Q3 of quasi-implicaiton algebra
---- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM .
+--- [ignore] Verification of Q3 of quasi-implicaiton algebra
+--- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-NF .
+--- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-FH .
 --- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-FULL .
 
 --- [o] Verification of O2 of ortho-implicaiton algebra
---- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-NF .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FH .
 --- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FULL .
 
 --- [o] Verification of O5 of orthomodular implication algebra
---- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-NF .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FH .
 --- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FULL .
 
 --- [?] Verification of O6 of orthomodular implication algebra
---- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM .
+--- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-NF .
+--- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-FH .
 --- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-FULL .
 
 --- [o] Verification of J4 of Sasaki implication algebra
---- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-NF .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FH .
 --- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FULL .
 
 --- [o] Verification of K5 of Dishkant implication algebra
---- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-NF .
+--- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FH .
 --- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FULL .
 
 --- [?] Verification of L6 of Relevance implicaiton algebra
---- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-NF .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FH .
 --- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FULL .
 
 --- [?] Verification of the open problem 7.7
---- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM .
+--- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM-NF .
+--- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM-FH .
 --- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM-FULL .
