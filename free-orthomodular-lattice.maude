@@ -49,8 +49,10 @@ mod FOM is
     --- eq (P qor Q) qor (qnot P qand qnot Q) = top .
 
     --- Checking equivalence of two lattices
-    op _=??=_ : Lattice Lattice -> Bool .
-    rl [equivalent] : P =??= P => true .
+    op true : -> Lattice [ctor] .
+    op _=?=_ : Lattice Lattice -> Lattice [prec 44] .
+    eq P =?= P = true .
+    --- rl [equivalent] : P =?= P => true .
 
     **************************************************************
     *** Implication translation to free orthomodular lattices ****
@@ -66,6 +68,11 @@ mod FOM is
     --- Relevance implication
     op _|->>_ : Lattice Lattice -> Lattice .
     rl [relevance] : P |->> Q => ((P qand Q) qor (qnot P qand Q)) qor (qnot P qand qnot Q) .
+
+    --- For the open problem 7.7
+    op _equiv_ : Lattice Lattice -> Lattice .
+    eq P equiv Q = (P qand Q) qor (qnot P qand qnot Q) .
+    --- rl [equiv] : P equiv Q => (P qand Q) qor (qnot P qand qnot Q) .
 endm
 
 mod FOM&FH-THEOREM is
@@ -402,14 +409,23 @@ endm
 
 in full-maude .
 
-mod FOM-TEST is
+mod FOM-CONFIG is
     protecting FOM&FH-THEOREM .
+
+    --- Error handling
+    ops error failure : -> Lattice [ctor] .
+
+    --- For searching with lattices
+    sort Config .
+    op {_} : Lattice -> Config .
+    op extractLattice : Config -> Lattice .
+    eq extractLattice({ L:Lattice }) = L:Lattice .
 
     ops a b c p q r : -> Lattice .
 endm
 
-mod FOM-FULL is
-    pr FOM-TEST .
+mod FOM-CHECKER is
+    pr FOM-CONFIG .
     pr NORMAL-FORM-BUILDER .
     pr FM-UNIT .
     pr FM-MODULE-HANDLING .
@@ -421,49 +437,80 @@ mod FOM-FULL is
         negBuilder(NF-LIST)
     ) .
 
-    op FOM-FULL : -> Module .
-    --- Using FH theorem & 96 normal forms
-    eq FOM-FULL = addEqs(NF-EQS, upModule('FOM-TEST, false)) .
     --- Using FH theorem only
-    --- eq FOM-FULL = upModule('FOM-TEST, false) .
+    op FOM : -> Module .
+    eq FOM = upModule('FOM-CONFIG, false) .
 
-    vars L1 L2 : Lattice .
+    --- Using FH theorem & 96 normal forms
+    op FOM-FULL : -> Module .
+    eq FOM-FULL = addEqs(NF-EQS, upModule('FOM-CONFIG, false)) .
+
+    vars L L1 L2 : Lattice .
     vars T1 T2 : Term .
     vars RT? : ResultTriple? .
     vars M : Module .
+    vars N : Nat .
+    vars B : Bound .
+    vars C : Condition .
+    vars QID : Qid .
 
-    --- Checking equivalence between formulae in FOM-FULL
-    op _=?=_ : Lattice Lattice -> Bool .
-    ceq L1 =?= L2 = if RT? == failure then false else true fi
-    if T1 := upTerm(L1 =??= L2)
-    /\ T2 := upTerm(true)
-    /\ M := FOM-FULL
+    --- Checking equivalence between two lattices in a module
+    op _=?=_in_ : Lattice Lattice Module -> Bool .
+    ceq L1 =?= L2 in M = if RT? == failure then false else true fi
+    if T1 := upTerm(L1 =?= L2)
+    /\ T2 := upTerm((true).Lattice)
     /\ RT? := metaSearch(M, T1, T2, nil, '*, unbounded, 0) .
+
+    ---- Searching with lattices
+    op search : Module Lattice Condition Qid Bound Nat -> Lattice .
+    ceq search(M, L1, C, QID, B, N) = if RT? == failure
+                            then (failure).Lattice
+                            else
+                                extractLattice(downTerm(getTerm(RT?), { (error).Lattice }))
+                            fi
+    if T1 := upTerm({ L1 })
+    /\ T2 := '`{_`}['L2:Lattice]
+    /\ RT? := metaSearch(M, T1, T2, C, QID, B, N) .
 endm
 
+--- set print attribute on .
+
 --- [o] Verification of Q1 of quasi-implicaiton algebra
---- red (a |-> b) |-> a =?= a .
+--- red (a |-> b) |-> a =?= a in FOM .
+--- red (a |-> b) |-> a =?= a in FOM-FULL .
 
 --- [o] Verification of Q2 of quasi-implicaiton algebra
---- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FULL .
 
 --- [o] Verification of Q3 of quasi-implicaiton algebra
---- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b .
+--- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM .
+--- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-FULL .
 
 --- [o] Verification of O2 of ortho-implicaiton algebra
---- red p |~> ((q |~> p) |~> r) =?= p |~> r .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FULL .
 
 --- [o] Verification of O5 of orthomodular implication algebra
---- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FULL .
 
 --- [?] Verification of O6 of orthomodular implication algebra
---- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r .
+--- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM .
+--- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-FULL .
 
 --- [o] Verification of J4 of Sasaki implication algebra
---- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FULL .
 
 --- [o] Verification of K5 of Dishkant implication algebra
---- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) .
+--- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FULL .
 
 --- [?] Verification of L6 of Relevance implicaiton algebra
---- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM .
+--- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FULL .
+
+--- [?] Verification of the open problem 7.7
+--- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM .
+--- red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM-FULL .
