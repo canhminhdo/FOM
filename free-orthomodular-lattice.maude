@@ -88,10 +88,10 @@ mod FOM&FH-THEOREM is
     eq (qnot P) commutes (P qand Q) = true .
     eq (P qand Q) commutes (qnot P qor qnot Q) = true .
 
-    crl [comm1] : P qand (Q qor R) => (P qand Q) qor (P qand R) if P commutes Q /\ P commutes R /\ P =/= Q /\ P =/= R /\ Q =/= R .
-    crl [comm2] : P qor (Q qand R) => (P qor Q) qand (P qor R) if P commutes Q /\ P commutes R /\ P =/= Q /\ P =/= R /\ Q =/= R .
-    crl [comm3] : (P qand Q) qor (P qand R) => P qand (Q qor R) if P commutes Q /\ P commutes R /\ P =/= Q /\ P =/= R /\ Q =/= R .
-    crl [comm4] : (P qor Q) qand (P qor R) => P qor (Q qand R) if P commutes Q /\ P commutes R /\ P =/= Q /\ P =/= R /\ Q =/= R .
+    crl [comm1] : P qand (Q qor R) => (P qand Q) qor (P qand R) if P commutes Q /\ P commutes R .
+    crl [comm2] : P qor (Q qand R) => (P qor Q) qand (P qor R) if P commutes Q /\ P commutes R .
+    crl [comm3] : (P qand Q) qor (P qand R) => P qand (Q qor R) if P commutes Q /\ P commutes R .
+    crl [comm4] : (P qor Q) qand (P qor R) => P qor (Q qand R) if P commutes Q /\ P commutes R .
 endm
 
 mod NORMAL-FORM is
