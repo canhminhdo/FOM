@@ -54,9 +54,9 @@ mod BOOLEAN-LATTICE-TEST is
     ops p q r : -> Lattice .
 endm
 
---- Verification of I1 of implicaiton algebra
+--- Verification of I1 of implication algebra
 search [1] (p |-> q) |-> p =?= p =>* true .
---- Verification of I2 of implicaiton algebra
+--- Verification of I2 of implication algebra
 search [1] p |-> (q |-> r) =?= q |-> (p |-> r) =>* true .
---- Verification of I3 of implicaiton algebras
+--- Verification of I3 of implication algebras
 search [1] (p |-> q) |-> q =?= (q |-> p) |-> p =>* true .

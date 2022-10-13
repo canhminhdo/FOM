@@ -25,7 +25,7 @@ Loading the tool in Maude 3.1 with the following command:
 
 `maude free-orthomodular-lattice.maude`
 
-Checking the validity of Q2 of quasi-implicaiton algebra with different strategies using the following commands:
+Checking the validity of Q2 of quasi-implication algebra with different strategies using the following commands:
 
 `red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-NF .`
 

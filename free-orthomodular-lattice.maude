@@ -479,22 +479,22 @@ endm
 
 --- set print attribute on .
 
---- [ignore] Verification of Q1 of quasi-implicaiton algebra
+--- [ignore] Verification of Q1 of quasi-implication algebra
 --- red (a |-> b) |-> a =?= a in FOM-NF .
 --- red (a |-> b) |-> a =?= a in FOM-FH .
 --- red (a |-> b) |-> a =?= a in FOM-FULL .
 
---- [o] Verification of Q2 of quasi-implicaiton algebra
+--- [o] Verification of Q2 of quasi-implication algebra
 --- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-NF .
 --- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FH .
 --- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM-FULL .
 
---- [ignore] Verification of Q3 of quasi-implicaiton algebra
+--- [ignore] Verification of Q3 of quasi-implication algebra
 --- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-NF .
 --- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-FH .
 --- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM-FULL .
 
---- [o] Verification of O2 of ortho-implicaiton algebra
+--- [o] Verification of O2 of ortho-implication algebra
 --- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-NF .
 --- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FH .
 --- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FULL .
@@ -519,7 +519,7 @@ endm
 --- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FH .
 --- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FULL .
 
---- [?] Verification of L6 of Relevance implicaiton algebra
+--- [?] Verification of L6 of Relevance implication algebra
 --- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-NF .
 --- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FH .
 --- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-FULL .
