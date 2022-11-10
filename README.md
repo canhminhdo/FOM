@@ -38,7 +38,7 @@ We can use the formal specification of free orthomodular lattices with different
 
 where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) strategies, respectively.
 
-- Simmilarly, checking validity of axiom (O2) of ortho-implication algebra
+- Checking validity of the axiom (O2) of ortho-implication algebra
 
 `red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-NF .`
 
