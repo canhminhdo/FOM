@@ -9,7 +9,7 @@ The tool is written in Maude 3.2.1 with the following features:
 
 ## 2. Requirements
 
-The tool is written in Maude 3.2.1 and using Full-Maude 3.2.1. Hence, users are required to install them by [the following link](https://maude.cs.illinois.edu/w/index.php/Maude_download_and_installation)
+The tool is written in Maude 3.2.1 and uses Full-Maude 3.2.1. Hence, users are required to install them by [the following link](https://maude.cs.illinois.edu/w/index.php/Maude_download_and_installation)
 
 ## 3. The use of strategies
 
@@ -38,7 +38,7 @@ We can use the formal specification of free orthomodular lattices with different
 
 where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) strategies, respectively.
 
-- Checking validity of the axiom (O2) of ortho-implication algebra
+- Checking the validity of the axiom (O2) of ortho-implication algebra
 
 `red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-NF .`
 
@@ -46,7 +46,7 @@ where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) str
 
 `red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM-FULL .`
 
-- Checking validity of the axiom (O5) of orthomodular implication algebra
+- Checking the validity of the axiom (O5) of orthomodular implication algebra
 
 `red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-NF .`
 
@@ -54,7 +54,7 @@ where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) str
 
 `red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM-FULL .`
 
-- Checking validity of the axiom (O6) of orthomodular implication algebra
+- Checking the validity of the axiom (O6) of orthomodular implication algebra
 
 `red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-NF .`
 
@@ -62,7 +62,7 @@ where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) str
 
 `red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM-FULL .`
 
-- Checking validity of the axiom (J4) of Sasaki implication algebra
+- Checking the validity of the axiom (J4) of Sasaki implication algebra
 
 `red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-NF .`
 
@@ -70,7 +70,7 @@ where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) str
 
 `red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM-FULL .`
 
-- Checking validity of the axiom (K5) of Dishkant implication algebra
+- Checking the validity of the axiom (K5) of Dishkant implication algebra
 
 `red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-NF .`
 
@@ -78,7 +78,7 @@ where `FOM-NF`, `FOM-FH`, and `FOM-FULL` denote the use of (1), (2), and (3) str
 
 `red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM-FULL .`
 
-- Checking validity of the axiom (L6) of relevance implication algebra
+- Checking the validity of the axiom (L6) of relevance implication algebra
 
 `red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM-NF .`
 
