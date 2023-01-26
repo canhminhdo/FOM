@@ -453,28 +453,28 @@ endm
 --- set print attribute on .
 
 --- [o] Verification of Q1 of quasi-implication algebra
-red (a |-> b) |-> a =?= a in FOM .
+--- red (a |-> b) |-> a =?= a in FOM .
 
 --- [o] Verification of Q2 of quasi-implication algebra
-red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM .
+--- red (a |-> b) |-> (a |-> c) =?= (b |-> a) |-> (b |-> c) in FOM .
 
 --- [o] Verification of Q3 of quasi-implication algebra
-red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM .
+--- red ((a |-> b) |-> (b |-> a)) |-> a =?= ((b |-> a) |-> (a |-> b)) |-> b in FOM .
 
 --- [o] Verification of O2 of ortho-implication algebra
-red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM .
+--- red p |~> ((q |~> p) |~> r) =?= p |~> r in FOM .
 
 --- [o] Verification of O5 of orthomodular implication algebra
-red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> (p |~> r) =?= top in FOM .
 
 --- [o] Verification of O6 of orthomodular implication algebra
-red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM .
+--- red ((((((((((p |~> q) |~> q) |~> r) |~> r) |~> r) |~> p) |~> p) |~> r) |~> p) |~> p) =?= (((p |~> q) |~> q) |~> r) |~> r in FOM .
 
 --- [o] Verification of J4 of Sasaki implication algebra
-red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM .
+--- red p |-> ((p |-> ((q |-> ((q |-> r) |-> bot)) |-> bot)) |-> bot) =?= r |-> ((r |-> ((p |-> ((p |-> q) |-> bot)) |-> bot)) |-> bot) in FOM .
 
 --- [o] Verification of K5 of Dishkant implication algebra
-red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM .
+--- red (((p |~> q) |~> q) |~> r) |~> r =?= (p |~> ((q |~> r) |~> r)) |~> ((q |~> r) |~> r) in FOM .
 
 --- [?] Verification of L6 of Relevance implication algebra
 --- red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM .
