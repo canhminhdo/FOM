@@ -1,0 +1,4 @@
+in FOM.maude
+
+--- [?] Verification of the open problem 7.7
+red (p equiv q) qand ((q equiv r) qor (p equiv r)) =?= ((p equiv q) qand (q equiv r)) qor ((p equiv q) qand (p equiv r)) in FOM .

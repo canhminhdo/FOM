@@ -1,0 +1,4 @@
+in FOM.maude
+
+--- [?] Verification of L6 of Relevance implication algebra
+red (((p |->> q) |->> q) |->> r) |->> r =?= (p |->> ((q |->> r) |->> r)) |->> ((q |->> r) |->> r) in FOM .
